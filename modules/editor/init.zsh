@@ -208,8 +208,12 @@ bindkey -d
 
 for key ("$key_info[Escape]"{B,b}) bindkey -M emacs "$key" emacs-backward-word
 for key ("$key_info[Escape]"{F,f}) bindkey -M emacs "$key" emacs-forward-word
-bindkey -M emacs "$key_info[Escape]$key_info[Left]" emacs-backward-word
-bindkey -M emacs "$key_info[Escape]$key_info[Right]" emacs-forward-word
+#bindkey -M emacs "$key_info[Escape]$key_info[Left]" emacs-backward-word
+#bindkey -M emacs "$key_info[Escape]$key_info[Right]" emacs-forward-word
+bindkey '^[[1;5C' emacs-forward-word
+bindkey '^[[1;5D' emacs-backward-word
+
+
 
 # Kill to the beginning of the line.
 for key in "$key_info[Escape]"{K,k}
