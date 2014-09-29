@@ -82,7 +82,7 @@ function prompt_calen_setup {
   PROMPT='
 %F{green}${_prompt_calen_pwd}
 %(?:%F{green}[$[HISTCMD]]%f :%F{red}[$[HISTCMD]]%f )%f${git_info:+${(e)git_info[prompt]}${git_info[rprompt]}}%(!. %B%F{red}#%f%b.)${editor_info[keymap]} '
-  RPROMPT='${editor_info[overwrite]}${VIM:+" %B%F{green}V%f%b"}${git_info[rprompt]}'
+  RPROMPT='${editor_info[overwrite]}${VIM:+" %B%F{green}V%f%b"}${git_info[rprompt]} %(?::%B%F{red}[%?]%f%b)'
   SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
 }
 
