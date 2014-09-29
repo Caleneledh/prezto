@@ -1,0 +1,183 @@
+#!/usr/bin/zsh
+
+##
+# From .bashrc
+##
+
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias ll='ls -alFh'
+alias la='ls -A'
+alias l='ls -CF'
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+##
+# Custom alias list, separated by type
+##
+
+
+# SAFTEY NET
+
+alias rm='rm -I --preserve-root'
+alias chown='chown --preserve-root'
+alias chgrp='chgrp --preserve-root'
+alias chmod='chmod --preserve-root'
+
+
+# LISTING + DIRECTORY actions
+
+alias lg='ls -alh | grep -i --color=auto'
+alias l.='ls -d .* --color=auto'
+alias lt='ls -alFhtr'
+
+
+# TYPOS
+
+alias ks='ls --color=auto'
+alias cd..='cd ..'
+
+
+# FUNCTIONS
+
+alias turnoff="shutdown -h now"
+alias goodbye="shutdown -h now"
+alias cdhex="cd /opt/lampp/htdocs/hexrpg"
+alias commands='cut -f1 -d" " .histfile | sort -r | uniq -c | sort -nr | head -n 30'
+mountiso(){ sudo mount -o ro -t iso9660 "$1" /media/iso;}
+alias mntiso='mountiso'
+alias umountiso='sudo umount /media/iso'
+alias umntiso='sudo umount /media/iso'
+
+#google search for n terms:
+google(){
+    search=""
+    space="%20"
+    echo "Googling: $@"
+    for term in $@; do
+	search="$search$space$term"
+    done
+    echo "Google: lynx \"http://www.google.com/ncr/search?q=$search\""
+    space=""
+    term=""
+    lynx --cookies --accept-all-cookies "https://www.google.com/search?q=$search"
+}
+
+cdd(){
+    cd $1
+    ls
+}
+
+alias grepstr="grep -iHnR"
+
+
+# SUDO
+
+alias semacs='sudo emacs -nw'
+alias startlamp='sudo lampp start'
+alias stoplamp='sudo lampp stop'
+alias restartlamp='sudo lampp restart'
+alias lamp='sudo lampp'
+
+
+# CUSTOM LAUNCH
+
+alias emacs='emacs -nw'
+#alias phpstorm='pstorm'
+alias axel="axel -va"
+alias lighttable='~/bin/LightTable/LightTable &'
+alias netbeans='~/software/netbeans-8.0/bin/netbeans'
+
+
+mycat(){
+    cd ~/mybuilds/mycat
+    ./cataclysm-tiles &
+    cd -
+}
+vanillacat(){
+    cd ~/mybuilds/cataclysm
+    ./cataclysm-tiles &
+    cd -
+}
+
+#cataclysmsdl(){
+#    cd ~/mybuild/cataclysmsdl
+#    ./cataclysm-tiles
+#}
+
+openra(){
+    cd ~/mybuilds/openra
+    mono OpenRA.Game.exe &
+    cd -
+}
+
+# GENERAL ALIASES
+
+alias c64="x64"
+alias c128="x128"
+
+# ANDROID FUNCTIONS
+
+alias android-connect="mtpfs -o allow_other /media/s3mini"
+alias android-disconnect="fusermount -u /media/s3mini"
+
+
+
+
+# PACMAN FUNCTIONS
+
+alias pacupd='sudo pacman -Syu'
+# update system
+
+alias pacins='sudo pacman -S'
+alias pacinst='sudo pacman -S'
+# install package from repo
+
+alias pacinu='sudo pacman -U'
+# install package from file
+
+alias pacdel='sudo pacman -R'
+# unistall package
+
+alias pacrem='sudo pacman -Rns'
+# unistall and remove configs and unneeded deps
+
+alias pacsrch='pacman -Ss'
+# search for package
+
+alias pacinfo='pacman -Qi'
+# info about installed package
+
+alias pacorph='pacman -Qdt'
+# list orphan packages
+
+alias pacfile='pacman -Ql'
+# list files in package
+
+alias pacexpl='pacman -D --asexp'
+# mark as explicitly installed
+
+alias pacimpl='pacman -D --asdep'
+# mark as inplicitally installed
+
+alias pacmir='sudo pacman -Syy'
+# refresh package list
+
+alias changedconf='pacman -Qii | awk "/^MODIFIED/ {print $2}"'
+# list modified config files
+
+alias sizelist='expac -s -H M "%-30n %m" | sort -hk 2'
+# list installed packages by size
+
+alias pacman-disowned-dirs="comm -23 <(sudo find / \( -path '/dev' -o -path '/sys' -o -path '/run' -o -path '/tmp' -o -path '/mnt' -o -path '/srv' -o -path '/proc' -o -path '/boot' -o -path '/home' -o -path '/root' -o -path '/media' -o -path '/var/lib/pacman' -o -path '/var/cache/pacman' \) -prune -o -type d -print | sed 's/\([^/]\)$/\1\//' | sort -u) <(pacman -Qlq | sort -u)"
+# list directories not beloning to any package
+
+alias pacman-disowned-files="comm -23 <(sudo find / \( -path '/dev' -o -path '/sys' -o -path '/run' -o -path '/tmp' -o -path '/mnt' -o -path '/srv' -o -path '/proc' -o -path '/boot' -o -path '/home' -o -path '/root' -o -path '/media' -o -path '/var/lib/pacman' -o -path '/var/cache/pacman' \) -prune -o -type f -print | sort -u) <(pacman -Qlq | sort -u)"
+# list files not beloning to any package
+
+
+
+
+## My helps
+alias githelp="cat ~/documents/notes/githelp"
